@@ -1,4 +1,4 @@
-def test_calculate_payment_fee_positive_amount():
+def test_calculate_payment_fee_happy_path():
     assert calculate_payment_fee(100.0) == 103.0
 
 def test_calculate_payment_fee_zero_amount():
@@ -13,17 +13,17 @@ def test_calculate_payment_fee_large_amount():
 def test_calculate_payment_fee_negative_amount():
     assert calculate_payment_fee(-100.0) == -103.0
 
-def test_calculate_payment_fee_boundary_positive():
-    assert calculate_payment_fee(1.0) == 1.03
+def test_calculate_payment_fee_edge_case_min_positive():
+    assert calculate_payment_fee(1e-10) == 1.03e-10
 
-def test_calculate_payment_fee_boundary_negative():
-    assert calculate_payment_fee(-1.0) == -1.03
+def test_calculate_payment_fee_edge_case_max_float():
+    assert calculate_payment_fee(1.79e308) == inf
 
-def test_calculate_payment_fee_edge_case_very_large_amount():
-    assert calculate_payment_fee(1e18) == 1.03e+18
+def test_calculate_payment_fee_input_as_integer():
+    assert calculate_payment_fee(50) == 51.5
 
-def test_calculate_payment_fee_edge_case_very_small_amount():
-    assert calculate_payment_fee(1e-18) == 1.03e-18
+def test_calculate_payment_fee_input_as_string():
+    assert calculate_payment_fee('100.0') == TypeError
 
-def test_calculate_payment_fee_edge_case_just_below_one():
-    assert calculate_payment_fee(0.999999999) == 1.02999999897
+def test_calculate_payment_fee_none_input():
+    assert calculate_payment_fee(None) == TypeError
