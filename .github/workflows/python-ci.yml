@@ -59,5 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-test-results
-          path: test-results/**/*.xml
-          if-no-files-found: warn
+          path: test-results
