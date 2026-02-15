@@ -1,5 +1,5 @@
 import pytest
-from payments.calculator import calculate_payment_fee
+from ..calculator import calculate_payment_fee
 from math import inf
 
 def test_calculate_payment_fee_standard_amount():
