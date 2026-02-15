@@ -1,5 +1,5 @@
 {
   "selected_tests": [
-    "src/external/test_stripe_gateway_test_v4.py"
+    "src/payments/test_processor_test_v4.py"
   ]
 }
