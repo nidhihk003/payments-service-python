@@ -1,5 +1,5 @@
 {
   "selected_tests": [
-    "tests/test_discounts_test_v3.py"
+    "src/payments/test_calculator_test_v2.py"
   ]
 }
