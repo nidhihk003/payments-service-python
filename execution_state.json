@@ -1,0 +1,5 @@
+{
+  "selected_tests": [
+    "src/payments/tests/test_calculator_test_v1.py"
+  ]
+}
