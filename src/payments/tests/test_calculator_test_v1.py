@@ -1,5 +1,6 @@
 import pytest
-
+from src.payments.calculator import calculate_payment_fee
+from math import inf
 
 def test_calculate_payment_fee_standard_amount():
     assert calculate_payment_fee(100.0) == 103.0
