@@ -51,4 +51,6 @@ jobs:
 
       - name: Run selected tests
         run: |
-          pytest $(cat tests_to_run.txt)
+          mkdir -p test-results
+          pytest $(cat tests_to_run.txt) --junitxml=test-results/results.xml
+
