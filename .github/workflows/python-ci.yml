@@ -1,0 +1,54 @@
+name: Execute Selected Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Read execution state
+        run: |
+          python - <<'EOF'
+          import json, sys
+
+          STATE_FILE = "execution_state.json"
+
+          try:
+              with open(STATE_FILE) as f:
+                  state = json.load(f)
+          except FileNotFoundError:
+              print("execution_state.json not found")
+              sys.exit(1)
+
+          tests = state.get("selected_tests")
+
+          if not tests or not isinstance(tests, list):
+              print("No selected tests provided")
+              sys.exit(1)
+
+          with open("tests_to_run.txt", "w") as f:
+              for t in tests:
+                  f.write(t.strip() + "\n")
+
+          print(f"Resolved {len(tests)} selected tests")
+          EOF
+
+      - name: Run selected tests
+        run: |
+          pytest $(cat tests_to_run.txt)
