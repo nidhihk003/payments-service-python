@@ -51,7 +51,9 @@ jobs:
       - name: Run selected tests
         run: |
           mkdir -p test-results
-          pytest --import-mode=importlib --junitxml=test-results/results.xml || true
+          pytest --import-mode=importlib $(cat tests_to_run.txt) \
+          --junitxml=test-results/results.xml || true
+
 
 
 
