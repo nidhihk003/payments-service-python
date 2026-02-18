@@ -51,11 +51,14 @@ jobs:
       - name: Run selected tests
         run: |
           mkdir -p test-results
-          pytest --import-mode=importlib $(cat tests_to_run.txt) \
-          --junitxml=test-results/results.xml || true
-
-
-
+          counter=1
+      
+          while read testfile; do
+            echo "Running $testfile"
+            pytest --import-mode=importlib "$testfile" \
+            --junitxml="test-results/results_$counter.xml" || true
+            counter=$((counter+1))
+          done < tests_to_run.txt
 
       - name: Upload test results
         if: always()
