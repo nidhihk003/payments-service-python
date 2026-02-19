@@ -1,8 +1,8 @@
 {
   "selected_tests": [
-    "tests/test_payment_service_test_v3.py",
-    "src/payments/test_processor_test_v6.py",
-    "src/payments/test_refunds_test_v3.py",
-    "src/payments/test_discounts_test_v19.py"
+    "tests/test_payment_service_v2.py",
+    "src/payments/test_processor_test_v8.py",
+    "src/payments/test_refunds_test_v5.py",
+    "tests/test_discounts_test_v8.py"
   ]
 }
