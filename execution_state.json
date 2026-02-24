@@ -1,6 +1,5 @@
 {
   "selected_tests": [
-    "src/payments/test_processor_test_v14.py",
-    "src/payments/test_payment_service_test_v15.py"
+    "src/payments/test_payment_service_test_v16.py"
   ]
 }
